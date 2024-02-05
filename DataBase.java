@@ -11,15 +11,22 @@ public class DataBase {
 
     private void setDataBase(String names, String ids)
     {
-        Scanner in1 = new Scanner(new File(names));
-        Scanner in2 = new Scanner(new File(ids));
-
-        while(in1.hasNext() && in2.hasNext())
+        try
         {
-            int id = in2.nextInt();
-            String name = in1.next();
+            Scanner in1 = new Scanner(new File(names));
+            Scanner in2 = new Scanner(new File(ids));
 
-            database.put(id, name);
+            while(in1.hasNext() && in2.hasNext())
+            {
+                int id = in2.nextInt();
+                String name = in1.next();
+
+                database.put(id, name);
+            }
+        }
+        catch(IOException i)
+        {
+            System.out.println("ERROR: " + i.getMessage());
         }
     }
 
