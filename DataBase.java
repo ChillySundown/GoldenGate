@@ -19,7 +19,7 @@ public class DataBase {
             while(in1.hasNext() && in2.hasNext())
             {
                 int id = in2.nextInt();
-                String name = in1.next();
+                String name = in1.nextLine();
 
                 database.put(id, name);
             }
