@@ -6,7 +6,7 @@ public class TestScanner
         Scanner input = new Scanner(System.in);
         DataBase d = new DataBase("names.txt", "ids.txt");
         boolean use = false;
-        int idUse;
+        int idUse = -1;
         int inp;
 
         while(true)
@@ -30,7 +30,7 @@ public class TestScanner
                 {
                     use = true;
                     idUse = inp;
-                    System.out.println(d.getName(inp) + " checked out the hallpass.")
+                    System.out.println(d.getName(inp) + " checked out the hallpass.");
                 }
                 else
                 {
