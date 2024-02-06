@@ -1,5 +1,5 @@
 import javax.swing.*;
-public class FirstSwingExample {
+public class firstSwingExample {
     public static void main(String[] args) {
         JFrame f = new JFrame(); //I am now creating an instance for the JFrame
 
