@@ -30,7 +30,7 @@ public class DataBase {
         }
     }
 
-    private boolean validId(int id)
+    public boolean validId(int id)
     {
         return database.containsKey(id);
     }
