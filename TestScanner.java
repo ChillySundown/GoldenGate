@@ -11,6 +11,7 @@ public class TestScanner
         int inp;
         LocalTime checkIn = LocalTime.now();
         LocalTime checkOut = LocalTime.now();
+        File log = new File("log.txt");
 
         while(true)
         {
