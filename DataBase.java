@@ -23,6 +23,8 @@ public class DataBase {
 
                 database.put(id, name);
             }
+            in1.close();
+            in2.close();
         }
         catch(IOException i)
         {
