@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.time.*;
 public class TestScanner
 {
     public static void main(String[] args)
@@ -8,6 +9,8 @@ public class TestScanner
         boolean use = false;
         int idUse = -1;
         int inp;
+        LocalTime checkIn = LocalTime.now();
+        LocalTime checkOut = LocalTime.now();
 
         while(true)
         {
@@ -17,7 +20,8 @@ public class TestScanner
                 if(inp == idUse)
                 {
                     use = false;
-                    System.out.println(d.getName(inp) + " checked in the hallpass.");
+                    checkIn = LocalTime.now();
+                    System.out.println(d.getName(inp) + " checked in the hallpass at " + checkIn + ". (" + Duration.between(checkOut, checkIn) + ")");
                 }
                 else
                 {
@@ -30,7 +34,8 @@ public class TestScanner
                 {
                     use = true;
                     idUse = inp;
-                    System.out.println(d.getName(inp) + " checked out the hallpass.");
+                    checkOut = LocalTime.now();
+                    System.out.println(d.getName(inp) + " checked out the hallpass at " + checkOut + ".");
                 }
                 else
                 {
