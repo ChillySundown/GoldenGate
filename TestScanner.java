@@ -1,5 +1,9 @@
 import java.util.Scanner;
 import java.time.*;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 public class TestScanner
 {
     public static void main(String[] args)
@@ -11,38 +15,52 @@ public class TestScanner
         int inp;
         LocalTime checkIn = LocalTime.now();
         LocalTime checkOut = LocalTime.now();
-        File log = new File("log.txt");
-
-        while(true)
+        String msg = "";
+        boolean contin = true;
+        try
         {
-            inp = input.nextInt();
-            if(use)
+            while(contin)
             {
-                if(inp == idUse)
+                inp = input.nextInt();
+                if(inp == -1)
                 {
-                    use = false;
-                    checkIn = LocalTime.now();
-                    System.out.println(d.getName(inp) + " checked in the hallpass at " + checkIn + ". (" + Duration.between(checkOut, checkIn) + ")");
+                    contin = false;
+                }
+                else if(use)
+                {
+                    if(inp == idUse)
+                    {
+                        use = false;
+                        checkIn = LocalTime.now();
+                        msg = d.getName(inp) + " checked in the hallpass at " + checkIn + ". (" + Duration.between(checkOut, checkIn) + ")\n";
+                        Files.write(Paths.get("log.txt"), msg.getBytes(), StandardOpenOption.APPEND);
+                    }
+                    else
+                    {
+                        System.out.println("Someone else is using the hallpass.");
+                    }
                 }
                 else
                 {
-                    System.out.println("Someone else is using the hallpass.");
-                }
-            }
-            else
-            {
-                if(d.validId(inp))
-                {
-                    use = true;
-                    idUse = inp;
-                    checkOut = LocalTime.now();
-                    System.out.println(d.getName(inp) + " checked out the hallpass at " + checkOut + ".");
-                }
-                else
-                {
-                    System.out.println("Invalid Id");
+                    if(d.validId(inp))
+                    {   
+                        use = true;
+                        idUse = inp;
+                        checkOut = LocalTime.now();
+                        msg = d.getName(inp) + " checked out the hallpass at " + checkOut + ".\n";
+                        Files.write(Paths.get("log.txt"), msg.getBytes(), StandardOpenOption.APPEND);
+                    }
+                    else
+                    {
+                        System.out.println("Invalid Id");
+                    }
                 }
             }
         }
+        catch(IOException e)
+        {
+            System.out.println("ERROR");
+        }
+        System.out.println("END");
     }
 }
