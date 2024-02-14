@@ -32,7 +32,7 @@ public class TestScanner
             {
                 use = false;
                 checkIn = LocalTime.now();
-                msg = d.getName(inp) + " checked in the hallpass at " + checkIn + ". (" + Duration.between(checkOut, checkIn) + ")\n";
+                msg = d.getName(id) + " checked in the hallpass at " + checkIn + ". (" + Duration.between(checkOut, checkIn) + ")\n";
                 return msg;
             }
             else
@@ -47,7 +47,7 @@ public class TestScanner
                 use = true;
                 idUse = id;
                 checkOut = LocalTime.now();
-                msg = d.getName(inp) + " checked out the hallpass at " + checkOut + ".\n";
+                msg = d.getName(id) + " checked out the hallpass at " + checkOut + ".\n";
                 return msg;
             }
             else
