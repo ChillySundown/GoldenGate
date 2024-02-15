@@ -32,7 +32,21 @@ public class TestScanner
             {
                 use = false;
                 checkIn = LocalTime.now();
-                msg = d.getName(id) + " checked in the hallpass at " + checkIn + ". (" + Duration.between(checkOut, checkIn);
+                String test = "" + (checkIn);
+                test = test.substring(0, test.indexOf("."));
+                String dur = "" + Duration.between(checkOut, checkIn);
+                dur = dur.substring(2);
+                String ret = "";
+                if(dur.substring(dur.length() - 1).equalsIgnoreCase("m"))
+                {
+                    
+                }
+                else
+                {
+                    ret += "0:";
+                }
+                System.out.println(test + " " + dur);
+                msg = d.getName(id) + " checked in the hallpass at " + checkIn + ". (";
                 return msg;
             }
             else
