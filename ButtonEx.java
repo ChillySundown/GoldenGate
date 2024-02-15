@@ -8,6 +8,6 @@ public class ButtonEx {
         a.setSize(480, 400);
         a.setLayout(null);
         a.setVisible(true);
-        
+        a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
