@@ -39,14 +39,15 @@ public class TestScanner
                 String ret = "";
                 if(dur.substring(dur.length() - 1).equalsIgnoreCase("m"))
                 {
-                    
+                    ret += dur.substring(0, dur.indexOf(".")) + ":";
                 }
                 else
                 {
                     ret += "0:";
                 }
-                System.out.println(test + " " + dur);
-                msg = d.getName(id) + " checked in the hallpass at " + checkIn + ". (";
+                ret += dur.substring(dur.indexOf(".") + 1, dur.indexOf(".") + 3);
+                System.out.println(test + " " + dur + " " + ret);
+                msg = d.getName(id) + " checked in the hallpass at " + checkIn + ". (" + ret + ")";
                 return msg;
             }
             else
