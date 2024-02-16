@@ -1,9 +1,13 @@
+import java.util.concurrent.TimeUnit;
 public class TempTesting
 {
     public static void main(String[] args)
     {
+        try
+        {
         TestScanner t = new TestScanner();
         System.out.println(t.scan(960031902));
+        TimeUnit.SECONDS.sleep(15);
         System.out.println(t.scan(960031902));
         System.out.println(t.scan(96003190));
         System.out.println(t.scan(960031902));
@@ -15,5 +19,10 @@ public class TempTesting
         System.out.println(t.curOut());
         System.out.println(t.scan(960031902));
         System.out.println(t.curOut());
+        }
+        catch(Exception e)
+        {
+            System.out.println("ERROR");
+        }
     }
 }
