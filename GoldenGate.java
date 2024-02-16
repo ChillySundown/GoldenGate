@@ -4,18 +4,26 @@ public class GoldenGate
 {
     GoldenGate() {
         JFrame screen = new JFrame("GoldenGate");
-        final JLabel greeting = new JLabel("Please enter your 9 digit ID");
+        JLabel greeting = new JLabel("Please enter your 9 digit ID");
         TestScanner t = new TestScanner();
-        greeting.setBounds(350, 150, 200, 50);
-        final JPasswordField enter = new JPasswordField();
-        enter.setBounds(350, 200, 200, 50);
+        greeting.setBounds(450, 250, 200, 50);
+        JPasswordField enter = new JPasswordField(9);
+        enter.setBounds(450, 300, 200, 50);
+        JLabel message = new JLabel();
+        message.setBounds(450, 350, 400, 50);
+        screen.add(message);
         screen.add(greeting);
         screen.setSize(580, 500);
         screen.add(enter);
         enter.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent nums) {
                 String input = new String(enter.getPassword());
-                
+                try {
+                    int id = Integer.parseInt(input);
+                    message.setText(t.scan(id));
+                } catch(Exception e) {
+                    message.setText("Invalid input. Please try again");
+                }
             }
         });
         screen.setLayout(null);
