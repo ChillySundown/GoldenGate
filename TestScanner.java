@@ -1,6 +1,9 @@
-import java.util.Scanner;
 import java.time.*;
 import java.io.*;
+import java.util.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 public class TestScanner
 {
     Scanner input;
@@ -37,18 +40,35 @@ public class TestScanner
                 String dur = "" + Duration.between(checkOut, checkIn);
                 dur = dur.substring(2);
                 String ret = "";
-                if(dur.substring(dur.length() - 1).equalsIgnoreCase("m"))
+
+                if(dur.indexOf("M") != -1)
                 {
-                    ret += dur.substring(0, dur.indexOf(".")) + ":";
+                    ret += dur.substring(0, dur.indexOf("M")) + ":";
+                    if(dur.substring(dur.indexOf("M") + 1, dur.indexOf(".")).length() < 2)
+                    {
+                        ret += "0";
+                    }
+                    ret += dur.substring(dur.indexOf("M") + 1, dur.indexOf("."));
                 }
                 else
                 {
                     ret += "0:";
+                    if(dur.substring(0, dur.indexOf(".")).length() < 2)
+                    {
+                        ret += "0";
+                    }
+                    ret += dur.substring(0, dur.indexOf("."));
                 }
-                ret += dur.substring(dur.indexOf(".") + 1, dur.indexOf(".") + 3);
+                
                 System.out.println(test + " " + dur + " " + ret);
-                msg = d.getName(id) + " checked in the hallpass at " + checkIn + ". (" + ret + ")";
-                return msg;
+
+                msg = d.getName(id) + " checked in the hallpass at " + test + " (" + ret + ")\n";
+                try {
+                    Files.write(Paths.get("log.txt"), msg.getBytes(), StandardOpenOption.APPEND);
+                }catch (IOException e) {
+                    System.out.println("ERROR");
+                }
+                return d.getName(id) + " checked in the hallpass.";
             }
             else
             {
@@ -62,8 +82,15 @@ public class TestScanner
                 use = true;
                 idUse = id;
                 checkOut = LocalTime.now();
-                msg = d.getName(id) + " checked out the hallpass at " + checkOut;
-                return msg;
+                String test = "" + (checkOut);
+                test = test.substring(0, test.indexOf("."));
+                msg = d.getName(id) + " checked out the hallpass at " + test + "\n";
+                try {
+                    Files.write(Paths.get("log.txt"), msg.getBytes(), StandardOpenOption.APPEND);
+                }catch (IOException e) {
+                    System.out.println("ERROR");
+                }
+                return d.getName(id) + " checked in the hallpass.";
             }
             else
             {
