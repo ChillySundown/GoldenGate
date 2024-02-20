@@ -7,7 +7,7 @@ public class TempTesting
         {
         TestScanner t = new TestScanner();
         System.out.println(t.scan(960031902));
-        TimeUnit.SECONDS.sleep(15);
+        TimeUnit.SECONDS.sleep(10);
         System.out.println(t.scan(960031902));
         System.out.println(t.scan(96003190));
         System.out.println(t.scan(960031902));
