@@ -14,6 +14,11 @@ public class TestScanner
     LocalTime checkOut;
     String msg;
     boolean contin;
+    String date;
+    ZoneId pst; 
+    Instant curTime;
+    ZonedDateTime time;
+    LocalDate today;
 
     public TestScanner()
     {
@@ -24,6 +29,10 @@ public class TestScanner
         checkIn = LocalTime.now();
         checkOut = LocalTime.now();
         msg = "";
+        date = "";
+        pst = ZoneId.of( "America/Los_Angeles" );
+        today = LocalDate.now( pst );
+        curTime = Instant.now();
         contin = true;
     }
 
@@ -40,7 +49,9 @@ public class TestScanner
                 String dur = "" + Duration.between(checkOut, checkIn);
                 dur = dur.substring(2);
                 String ret = "";
-
+                date = today.toString();
+                curTime = Instant.now();
+                time = curTime.atZone(pst);
                 if(dur.indexOf("M") != -1)
                 {
                     ret += dur.substring(0, dur.indexOf("M")) + ":";
@@ -62,7 +73,7 @@ public class TestScanner
                 
                 System.out.println(test + " " + dur + " " + ret);
 
-                msg = d.getName(id) + " checked in the hallpass at " + test + " (" + ret + ")\n";
+                msg = d.getName(id) + " checked in the hallpass at " + date + " " + time + " (" + ret + ")\n";
                 try {
                     Files.write(Paths.get("log.txt"), msg.getBytes(), StandardOpenOption.APPEND);
                 }catch (IOException e) {
@@ -84,7 +95,11 @@ public class TestScanner
                 checkOut = LocalTime.now();
                 String test = "" + (checkOut);
                 test = test.substring(0, test.indexOf("."));
-                msg = d.getName(id) + " checked out the hallpass at " + test + "\n";
+                date = today.toString();
+                curTime = Instant.now();
+                time = curTime.atZone(pst);
+                msg = d.getName(id) + " checked out the hallpass at " + date + " " + time + "\n";
+
                 try {
                     Files.write(Paths.get("log.txt"), msg.getBytes(), StandardOpenOption.APPEND);
                 }catch (IOException e) {
