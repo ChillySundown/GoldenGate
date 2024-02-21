@@ -18,3 +18,5 @@ Jeremiah Tinoco  checked out the hallpass at 2024-02-21 11:09:01
 Jeremiah Tinoco  checked in the hallpass at 2024-02-21 11:09:04 (0:03)
 Jeremiah Tinoco  checked out the hallpass at 2024-02-21 11:09:06
 Jeremiah Tinoco  checked in the hallpass at 2024-02-21 11:09:09 (0:02)
+Daniel Papazian checked out the hallpass at 2024-02-21 11:11:56
+Daniel Papazian checked in the hallpass at 2024-02-21 11:12:19 (0:23)
