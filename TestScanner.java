@@ -76,11 +76,10 @@ public class TestScanner
                     ret += dur.substring(0, dur.indexOf("."));
                 }
                 
-                System.out.println(test + " " + dur + " " + ret);
                 String timeT = "" + time;
                 timeT = timeT.substring(timeT.indexOf("T") + 1, timeT.indexOf("."));
                 msg = d.getName(id) + " checked in the hallpass at " + date + " " + timeT + " (" + ret + ")\n";
-                
+
                 try {
                     Files.write(Paths.get("log.txt"), msg.getBytes(), StandardOpenOption.APPEND);
                 }catch (IOException e) {
@@ -114,7 +113,7 @@ public class TestScanner
                 }catch (IOException e) {
                     System.out.println("ERROR");
                 }
-                return d.getName(id) + " checked in the hallpass.";
+                return d.getName(id) + " checked out the hallpass.";
             }
             else
             {
