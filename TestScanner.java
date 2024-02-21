@@ -52,7 +52,12 @@ public class TestScanner
                 date = today.toString();
                 curTime = Instant.now();
                 time = curTime.atZone(pst);
-                if(dur.indexOf("M") != -1)
+
+                if(dur.indexOf("H") != -1)
+                {
+                    ret += "Longer Than An Hour";
+                }
+                else if(dur.indexOf("M") != -1)
                 {
                     ret += dur.substring(0, dur.indexOf("M")) + ":";
                     if(dur.substring(dur.indexOf("M") + 1, dur.indexOf(".")).length() < 2)
@@ -72,8 +77,10 @@ public class TestScanner
                 }
                 
                 System.out.println(test + " " + dur + " " + ret);
-
-                msg = d.getName(id) + " checked in the hallpass at " + date + " " + time + " (" + ret + ")\n";
+                String timeT = "" + time;
+                timeT = timeT.substring(timeT.indexOf("T") + 1, timeT.indexOf("."));
+                msg = d.getName(id) + " checked in the hallpass at " + date + " " + timeT + " (" + ret + ")\n";
+                
                 try {
                     Files.write(Paths.get("log.txt"), msg.getBytes(), StandardOpenOption.APPEND);
                 }catch (IOException e) {
@@ -98,7 +105,9 @@ public class TestScanner
                 date = today.toString();
                 curTime = Instant.now();
                 time = curTime.atZone(pst);
-                msg = d.getName(id) + " checked out the hallpass at " + date + " " + time + "\n";
+                String timeT = "" + time;
+                timeT = timeT.substring(timeT.indexOf("T") + 1, timeT.indexOf("."));
+                msg = d.getName(id) + " checked out the hallpass at " + date + " " + timeT + "\n";
 
                 try {
                     Files.write(Paths.get("log.txt"), msg.getBytes(), StandardOpenOption.APPEND);
