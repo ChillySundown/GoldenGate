@@ -7,13 +7,13 @@ import java.awt.event.*;
 public class GoldenGate
 {
     GoldenGate() {
-        JFrame screen = new JFrame("GoldenGate");
-        JLabel greeting = new JLabel("Please enter your 9 digit ID");
-        TestScanner t = new TestScanner();
+        final JFrame screen = new JFrame("GoldenGate");
+        final JLabel greeting = new JLabel("Please enter your 9 digit ID");
+        final TestScanner t = new TestScanner();
         greeting.setBounds(500, 250, 200, 50);
-        JPasswordField enter = new JPasswordField(9);
+        final JPasswordField enter = new JPasswordField(9);
         enter.setBounds(500, 300, 200, 50);
-        JLabel message = new JLabel();
+        final JLabel message = new JLabel();
         message.setBounds(500, 350, 400, 50);
         screen.add(message);
         screen.add(greeting);
