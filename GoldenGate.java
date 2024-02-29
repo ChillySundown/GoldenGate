@@ -13,10 +13,13 @@ public class GoldenGate
         greeting.setBounds(500, 250, 200, 50);
         final JPasswordField enter = new JPasswordField(9);
         enter.setBounds(500, 300, 200, 50);
-        final JLabel message = new JLabel();
+        final JLabel message = new JLabel("Hall Pass Status: Not in Use");
+        final JLabel error = new JLabel();
+        error.setBounds(500, 450, 600, 50);
         message.setBounds(500, 350, 400, 50);
         screen.add(message);
         screen.add(greeting);
+        screen.add(error);
         Color background = Color.decode("#FF6C0C");
         screen.getContentPane().setBackground(background);
         screen.setSize(1920, 1080);
@@ -26,9 +29,25 @@ public class GoldenGate
                 String input = new String(enter.getPassword());
                 try {
                     int id = Integer.parseInt(input);
-                    message.setText(t.scan(id));
+                    String outie = t.scan(id);
+                    if(!outie.equalsIgnoreCase("Invalid Id") && !outie.equalsIgnoreCase("Someone else is using the hallpass."))
+                    {    
+                        if(t.validId(id) && !t.curOut().equals(""))
+                        {
+                            message.setText("Hall Pass Status: " + t.curOut() + " is currently using Hall Pass");
+                        }
+                        if(t.curOut().equals(""))
+                        {
+                            message.setText("Hall Pass Status: Not in use");
+                        }
+                        error.setText("");
+                    }
+                    else 
+                    {
+                        error.setText("ERROR: " + outie);
+                    }
                 } catch(Exception e) {
-                    message.setText("Invalid input. Please try again");
+                    error.setText("ERROR: Invalid input. Please try again");
                 }
             }
         });
