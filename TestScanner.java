@@ -6,19 +6,20 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 public class TestScanner
 {
-    Scanner input;
-    DataBase d;
-    boolean use;
-    int idUse;
-    LocalTime checkIn;
-    LocalTime checkOut;
-    String msg;
-    boolean contin;
-    String date;
-    ZoneId pst; 
-    Instant curTime;
-    ZonedDateTime time;
-    LocalDate today;
+    private Scanner input;
+    private DataBase d;
+    private boolean use;
+    private int idUse;
+    private LocalTime checkIn;
+    private LocalTime checkOut;
+    private String msg;
+    private boolean contin;
+    private String date;
+    private ZoneId pst; 
+    private Instant curTime;
+    private ZonedDateTime time;
+    private LocalDate today;
+    private String timeT;
 
     public TestScanner()
     {
@@ -34,6 +35,7 @@ public class TestScanner
         today = LocalDate.now( pst );
         curTime = Instant.now();
         contin = true;
+        timeT = "";
     }
 
     public String scan(int id)
@@ -44,8 +46,6 @@ public class TestScanner
             {
                 use = false;
                 checkIn = LocalTime.now();
-                String test = "" + (checkIn);
-                test = test.substring(0, test.indexOf("."));
                 String dur = "" + Duration.between(checkOut, checkIn);
                 dur = dur.substring(2);
                 String ret = "";
@@ -76,7 +76,7 @@ public class TestScanner
                     ret += dur.substring(0, dur.indexOf("."));
                 }
                 
-                String timeT = "" + time;
+                timeT += "" + time;
                 timeT = timeT.substring(timeT.indexOf("T") + 1, timeT.indexOf("."));
                 msg = d.getName(id) + " checked in the hallpass at " + date + " " + timeT + " (" + ret + ")\n";
 
@@ -99,12 +99,10 @@ public class TestScanner
                 use = true;
                 idUse = id;
                 checkOut = LocalTime.now();
-                String test = "" + (checkOut);
-                test = test.substring(0, test.indexOf("."));
                 date = today.toString();
                 curTime = Instant.now();
                 time = curTime.atZone(pst);
-                String timeT = "" + time;
+                timeT += "" + time;
                 timeT = timeT.substring(timeT.indexOf("T") + 1, timeT.indexOf("."));
                 msg = d.getName(id) + " checked out the hallpass at " + date + " " + timeT + "\n";
 
