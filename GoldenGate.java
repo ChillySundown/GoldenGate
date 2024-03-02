@@ -9,7 +9,7 @@ public class GoldenGate
     GoldenGate() {
         final JFrame screen = new JFrame("GoldenGate");
         final JLabel greeting = new JLabel("Please enter your 9 digit ID");
-        final TestScanner t = new TestScanner();
+        final TestScanner t = new TestScanner(); //TestScanner is a class made by my partner that scans IDs and adds them to log
         greeting.setBounds(500, 250, 200, 50);
         final JPasswordField enter = new JPasswordField(9);
         enter.setBounds(500, 300, 200, 50);
