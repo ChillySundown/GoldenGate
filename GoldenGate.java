@@ -20,7 +20,7 @@ public class GoldenGate
         screen.add(message);
         screen.add(greeting);
         screen.add(error);
-        Color background = Color.decode("#FF6C0C");
+        Color background = Color.decode("#accce6");
         screen.getContentPane().setBackground(background);
         screen.setSize(1920, 1080);
         screen.add(enter);
