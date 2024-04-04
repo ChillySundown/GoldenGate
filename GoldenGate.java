@@ -1,5 +1,4 @@
 import javax.swing.*;
-
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -15,11 +14,19 @@ public class GoldenGate
         enter.setBounds(500, 300, 200, 50);
         final JLabel message = new JLabel("Hall Pass Status: Not in Use");
         final JLabel error = new JLabel();
+        final JButton setUpButton = new JButton("Setup Mode");
+        setUpButton.setBounds(1200, 50, 200, 30);
+        setUpButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new setupMode();                
+            }
+        });
         error.setBounds(500, 450, 600, 50);
         message.setBounds(500, 350, 400, 50);
         screen.add(message);
         screen.add(greeting);
         screen.add(error);
+        screen.add(setUpButton);
         Color background = Color.decode("#accce6");
         screen.getContentPane().setBackground(background);
         screen.setSize(1920, 1080);

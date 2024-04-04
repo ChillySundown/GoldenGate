@@ -37,7 +37,7 @@ public class setupMode {
         miniScreen.setSize(780,700);
         miniScreen.setLayout(null);
         miniScreen.setVisible(true);
-        miniScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        miniScreen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     public static void main(String[] args)
     {
