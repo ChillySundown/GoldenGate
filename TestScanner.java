@@ -6,25 +6,22 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 public class TestScanner
 {
-    private Scanner input;
     private DataBase d;
     private boolean use;
     private int idUse;
     private LocalTime checkIn;
     private LocalTime checkOut;
     private String msg;
-    private boolean contin;
     private String date;
     private ZoneId pst; 
     private Instant curTime;
     private ZonedDateTime time;
     private LocalDate today;
     private String timeT;
+    private ArrayList<String[]> log;
 
     public TestScanner()
     {
-        input = new Scanner(System.in);
-        d = new DataBase("names.txt", "ids.txt");
         use = false;
         idUse = -1;
         checkIn = LocalTime.now();
@@ -34,8 +31,17 @@ public class TestScanner
         pst = ZoneId.of( "America/Los_Angeles" );
         today = LocalDate.now( pst );
         curTime = Instant.now();
-        contin = true;
         timeT = "";
+        try{
+            FileInputStream fis = new FileInputStream("logdata.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            log = (ArrayList<String[]>)ois.readObject();
+            ois.close();
+        }catch(Exception e)
+        {
+            System.out.println("INIT PROBLEM");
+        }
+        d = new DataBase(log);
     }
 
     public String scan(int id)
@@ -80,10 +86,23 @@ public class TestScanner
                 timeT = timeT.substring(timeT.indexOf("T") + 1, timeT.indexOf("."));
                 msg = d.getName(id) + " checked in the hallpass at " + date + " " + timeT + " (" + ret + ")\n";
 
-                try {
-                    Files.write(Paths.get("log.txt"), msg.getBytes(), StandardOpenOption.APPEND);
-                }catch (IOException e) {
-                    System.out.println("ERROR");
+                for(int i = 1; i < log.size(); i++)
+                {
+                    if(Integer.valueOf(log.get(i)[0]) == id)
+                    {
+                        String[] temp = log.get(i);
+                        if(!(temp[2].equals("")))
+                        {
+                            temp[2] += "\n";
+                        }
+                        temp[2] += (d.getName(id) + " checked in the hallpass.");
+                        temp[5] = "" + (Integer.valueOf(temp[5]) - 1);
+                        if(Integer.valueOf(dur.substring(0, dur.indexOf("M"))) > 9 || dur.indexOf("H") != -1)
+                        {
+                            temp[4] = "" + (Integer.valueOf(temp[4]) + 1);
+                        }
+                        log.set(i, temp);
+                    }
                 }
                 return d.getName(id) + " checked in the hallpass.";
             }
@@ -106,10 +125,20 @@ public class TestScanner
                 timeT = timeT.substring(timeT.indexOf("T") + 1, timeT.indexOf("."));
                 msg = d.getName(id) + " checked out the hallpass at " + date + " " + timeT + "\n";
 
-                try {
-                    Files.write(Paths.get("log.txt"), msg.getBytes(), StandardOpenOption.APPEND);
-                }catch (IOException e) {
-                    System.out.println("ERROR");
+                for(int i = 1; i < log.size(); i++)
+                {
+                    if(Integer.valueOf(log.get(i)[0]) == id)
+                    {
+                        String[] temp = log.get(i);
+                        if(!(temp[2].equals("")))
+                        {
+                            temp[2] += "\n";
+                        }
+                        temp[2] += (d.getName(id) + " checked out the hallpass.");
+                        temp[3] = "" + (Integer.valueOf(temp[3]) + 1);
+                        temp[5] = "" + (Integer.valueOf(temp[5]) + 1);
+                        log.set(i, temp);
+                    }
                 }
                 return d.getName(id) + " checked out the hallpass.";
             }
@@ -134,5 +163,70 @@ public class TestScanner
     public boolean validId(int id)
     {
         return d.validId(id);
+    }
+
+    public void addStudent(int id, String fullName)
+    {
+        String[] entry = new String[6];
+        entry[0] = "" + id;
+        entry[1] = fullName;
+        entry[2] = "";
+        entry[3] = "0";
+        entry[4] = "0";
+        entry[5] = "0";
+        log.add(entry);
+        writeData();
+    }
+
+    public void delStudent(int id)
+    {
+        int delIdx = -1;
+        for(int i = 1; i < log.size(); i++)
+        {
+            if(Integer.valueOf(log.get(i)[0]) == id)
+            {
+                delIdx = i;
+            }
+        }
+        if(delIdx != -1)
+        {
+            log.remove(delIdx);
+            writeData();
+        }
+    }
+
+    public void clearEvents()
+    {
+        for(int i = 0; i < log.size(); i++)
+        {
+            log.get(i)[2] = "";
+        }
+        writeData();
+    }
+
+    public void resetLog()
+    {
+        ArrayList<String[]> temp = new ArrayList<String[]>();
+        temp.add(log.get(0));
+        log = temp;
+        writeData();
+    }
+
+    public void writeData()
+    {
+        try{
+            FileOutputStream fos = new FileOutputStream("logdata.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(log);
+            oos.close();
+        }catch(Exception e)
+        {
+            System.out.println("PROBLEM");
+        }
+    }
+
+    public ArrayList<String[]> getLog()
+    {
+        return log;
     }
 }

@@ -9,6 +9,12 @@ public class DataBase {
         setDataBase(names, ids);
     }
 
+    public DataBase(ArrayList<String[]> l)
+    {
+        database = new HashMap<Integer, String>();
+        setDataBase(l);
+    }
+
     private void setDataBase(String names, String ids)
     {
         try
@@ -29,6 +35,14 @@ public class DataBase {
         catch(IOException i)
         {
             System.out.println("ERROR: " + i.getMessage());
+        }
+    }
+
+    private void setDataBase(ArrayList<String[]> list)
+    {
+        for(int i = 1; i < list.size(); i++)
+        {
+            database.put(Integer.valueOf(list.get(i)[0]), list.get(i)[1]);
         }
     }
 
