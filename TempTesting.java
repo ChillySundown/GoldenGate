@@ -8,6 +8,15 @@ public class TempTesting
         try
         {
             TestScanner t = new TestScanner();
+            ArrayList<String[]> temp = t.getLog();
+            for(int i = 0; i < temp.size(); i++)
+            {
+                for(int j = 0; j < 6; j++)
+                {
+                    System.out.print(temp.get(i)[j] + " ");
+                }
+                System.out.println();
+            }
             //t.resetLog();
             //t.delStudent(123);
             //t.scan(960031902);
