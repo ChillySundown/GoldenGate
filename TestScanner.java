@@ -6,24 +6,22 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 public class TestScanner
 {
-    private Scanner input;
     private DataBase d;
     private boolean use;
     private int idUse;
     private LocalTime checkIn;
     private LocalTime checkOut;
     private String msg;
-    private boolean contin;
     private String date;
     private ZoneId pst; 
     private Instant curTime;
     private ZonedDateTime time;
     private LocalDate today;
     private String timeT;
+    private String[][] log;
 
     public TestScanner()
     {
-        input = new Scanner(System.in);
         d = new DataBase("names.txt", "ids.txt");
         use = false;
         idUse = -1;
@@ -34,8 +32,10 @@ public class TestScanner
         pst = ZoneId.of( "America/Los_Angeles" );
         today = LocalDate.now( pst );
         curTime = Instant.now();
-        contin = true;
         timeT = "";
+        ObjectInputStream ois = new ObjectInputStream(new FileReader("logdata.txt"));
+        Object o = ois.read();
+        log = (String[][])o;
     }
 
     public String scan(int id)
@@ -134,5 +134,32 @@ public class TestScanner
     public boolean validId(int id)
     {
         return d.validId(id);
+    }
+
+    public void addStudent(int id, String fullName)
+    {
+        if(names.length() == 0)
+        {
+
+        }
+        else
+        {
+
+        }
+    }
+
+    public void delStudent(int id)
+    {
+
+    }
+
+    public void clearEvents()
+    {
+
+    }
+
+    public void resetLog()
+    {
+         
     }
 }
