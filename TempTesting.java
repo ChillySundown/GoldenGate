@@ -5,6 +5,43 @@ public class TempTesting
 {
     public static void main(String[] args)
     {
+        //try
+        //{
+            TestScanner t = new TestScanner();
+            String[][] t2 = t.getLog();
+            for(int r = 0; r < t2.length; r++)
+            {
+                for(int c = 0; c < t2[r].length; c++)
+                {
+                    System.out.print(t2[r][c] + " ");
+                }
+                System.out.println();
+            }
+        //}catch(Exception e)
+        //{
+        //    System.out.println("Other N");
+        //}
+        /*
+        String[][] n = new String[1][6];
+        n[0][0] = "Id";
+        n[0][1] = "Name";
+        n[0][2] = "Log";
+        n[0][3] = "# Usages";
+        n[0][4] = "# Exceeds 10 Mins";
+        n[0][5] = "# Fail Check In";
+
+        try
+        {
+            FileOutputStream fos1 = new FileOutputStream("logdata.txt");
+            ObjectOutputStream oos1 = new ObjectOutputStream(fos1);
+            oos1.writeObject(n);
+            oos1.close();
+        }catch(Exception e)
+        {
+            System.out.println("NOPE");
+        }
+        */
+        /*
         try
         {
             TestScanner t = new TestScanner();
@@ -45,6 +82,7 @@ public class TempTesting
             t.addStudent(960040891, "Narek Nikoghosyan");
             t.addStudent(960035920, "Dylan Muriano");
             t.addStudent(960005592, "Bryant Johnson");*/
+            /*
             ArrayList<String[]> l = t.getLog();
             for(int i = 0; i < l.size(); i++)
             {
@@ -115,11 +153,11 @@ public class TempTesting
             System.out.println(t.scan(960031902));
             System.out.println(t.curOut());
             System.out.println(t.scan(960031902));
-            System.out.println(t.curOut());*/
+            System.out.println(t.curOut());*//* 
         }
         catch(Exception e)
         {
             System.out.println("ERROR");
-        }
+        }*/
     }
 }

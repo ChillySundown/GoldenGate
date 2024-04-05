@@ -9,7 +9,7 @@ public class DataBase {
         setDataBase(names, ids);
     }
 
-    public DataBase(ArrayList<String[]> l)
+    public DataBase(String[][] l)
     {
         database = new HashMap<Integer, String>();
         setDataBase(l);
@@ -38,11 +38,11 @@ public class DataBase {
         }
     }
 
-    private void setDataBase(ArrayList<String[]> list)
+    private void setDataBase(String[][] list)
     {
-        for(int i = 1; i < list.size(); i++)
+        for(int i = 1; i < list.length; i++)
         {
-            database.put(Integer.valueOf(list.get(i)[0]), list.get(i)[1]);
+            database.put(Integer.valueOf(Integer.valueOf(list[i][0])), list[i][1]);
         }
     }
 
@@ -57,5 +57,15 @@ public class DataBase {
             return database.get(id);
         else
             return "Invalid";
+    }
+
+    public void newStudent(int id, String name)
+    {
+        database.put(id, name);
+    }
+
+    public void remStudent(int id)
+    {
+        database.remove(id);
     }
 }
