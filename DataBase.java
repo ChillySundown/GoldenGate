@@ -42,7 +42,7 @@ public class DataBase {
     {
         for(int i = 1; i < list.length; i++)
         {
-            database.put(Integer.valueOf(Integer.valueOf(list[i][0])), list[i][1]);
+            database.put(Integer.valueOf(Integer.valueOf(list[i][1])), list[i][2]);
         }
     }
 

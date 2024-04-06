@@ -21,14 +21,15 @@ public class TempTesting
         //{
         //    System.out.println("Other N");
         //}
-        /*
-        String[][] n = new String[1][6];
-        n[0][0] = "Id";
-        n[0][1] = "Name";
-        n[0][2] = "Log";
-        n[0][3] = "# Usages";
-        n[0][4] = "# Exceeds 10 Mins";
-        n[0][5] = "# Fail Check In";
+        
+        /*String[][] n = new String[1][7];
+        n[0][0] = "Period";
+        n[0][1] = "Id";
+        n[0][2] = "Name";
+        n[0][3] = "Log";
+        n[0][4] = "# Usages";
+        n[0][5] = "# Exceeds 10 Mins";
+        n[0][6] = "# Fail Check In";
 
         try
         {
@@ -39,8 +40,8 @@ public class TempTesting
         }catch(Exception e)
         {
             System.out.println("NOPE");
-        }
-        */
+        }*/
+        
         /*
         try
         {
@@ -61,27 +62,27 @@ public class TempTesting
             //t.scan(960031902);
             //t.scan(960031902);
             //t = new TestScanner();
-            /*t.addStudent(960031902, "Tadeh Mouradian");
-            t.addStudent(960011859, "Abbas Darwich");
-            t.addStudent(960011454, "Daniel Papazian");
-            t.addStudent(960011328, "Holden Wise");
-            t.addStudent(960028964, "Kai Cruz");
-            t.addStudent(960036172, "Alexander Mashhour");
-            t.addStudent(960011411, "Tobias Jacobsen");
-            t.addStudent(960011946, "Adam Timani");
-            t.addStudent(960029099, "Jeremiah Tinoco");
-            t.addStudent(960014776, "Raffi Petrosyan");
-            t.addStudent(960012846, "Maxwell LeSane");
-            t.addStudent(123, "PRO");
-            t.addStudent(960036277, "Aram Tsarukyan");
-            t.addStudent(960025157, "Ashot Hayrapetyan");
-            t.addStudent(960010958, "Sarah Dias");
-            t.addStudent(960024830, "Laressa Ottosson");
-            t.addStudent(960005921, "Anthony Olshansky");
-            t.addStudent(960031899, "Alexander Quintanilla");
-            t.addStudent(960040891, "Narek Nikoghosyan");
-            t.addStudent(960035920, "Dylan Muriano");
-            t.addStudent(960005592, "Bryant Johnson");*/
+            /*t.addStudent(960031902, "Tadeh Mouradian", 3);
+            t.addStudent(960011859, "Abbas Darwich", 3);
+            t.addStudent(960011454, "Daniel Papazian", 3);
+            t.addStudent(960011328, "Holden Wise", 3);
+            t.addStudent(960028964, "Kai Cruz", 3);
+            t.addStudent(960036172, "Alexander Mashhour", 3);
+            t.addStudent(960011411, "Tobias Jacobsen", 3);
+            t.addStudent(960011946, "Adam Timani", 3);
+            t.addStudent(960029099, "Jeremiah Tinoco", 3);
+            t.addStudent(960014776, "Raffi Petrosyan", 3);
+            t.addStudent(123, "TEST", 3);
+            t.addStudent(960012846, "Maxwell LeSane", 3);
+            t.addStudent(960036277, "Aram Tsarukyan", 3);
+            t.addStudent(960025157, "Ashot Hayrapetyan", 3);
+            t.addStudent(960010958, "Sarah Dias", 3);
+            t.addStudent(960024830, "Laressa Ottosson", 3);
+            t.addStudent(960005921, "Anthony Olshansky", 3);
+            t.addStudent(960031899, "Alexander Quintanilla", 3);
+            t.addStudent(960040891, "Narek Nikoghosyan", 3);
+            t.addStudent(960035920, "Dylan Muriano", 3);
+            t.addStudent(960005592, "Bryant Johnson", 3);*/
             /*
             ArrayList<String[]> l = t.getLog();
             for(int i = 0; i < l.size(); i++)
