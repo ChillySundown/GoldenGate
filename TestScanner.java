@@ -279,6 +279,7 @@ public class TestScanner
         temp[0][5] = log[0][5];
         temp[0][6] = log[0][6];
         log = temp;
+        d = new DataBase(log);
         writeData();
     }
 
