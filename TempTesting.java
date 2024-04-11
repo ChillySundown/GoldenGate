@@ -8,12 +8,21 @@ public class TempTesting
         //try
         //{
             TestScanner t = new TestScanner();
-            String[][] t2 = t.getLog();
+            String[][] t2 = t.getDb(); //t.getLog();
+            String[][] t3 = t.getDbAlt();
             for(int r = 0; r < t2.length; r++)
             {
                 for(int c = 0; c < t2[r].length; c++)
                 {
                     System.out.print(t2[r][c] + " ");
+                }
+                System.out.println();
+            }
+            for(int r = 0; r < t3.length; r++)
+            {
+                for(int c = 0; c < t3[r].length; c++)
+                {
+                    System.out.print(t3[r][c] + " ");
                 }
                 System.out.println();
             }

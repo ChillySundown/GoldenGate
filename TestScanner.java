@@ -279,6 +279,7 @@ public class TestScanner
         temp[0][5] = log[0][5];
         temp[0][6] = log[0][6];
         log = temp;
+        d = new DataBase(log);
         writeData();
     }
 
@@ -298,5 +299,28 @@ public class TestScanner
     public String[][] getLog()
     {
         return log;
+    }
+
+    public String[][] getDb()
+    {
+        String[][] db = new String[log.length][2];
+        for(int i = 0; i < db.length; i++)
+        {
+            db[i][0] = log[i][1];
+            db[i][1] = log[i][2];
+        }
+        return db;
+    }
+
+    public String[][] getDbAlt()
+    {
+        String[][] db = new String[log.length][3];
+        for(int i = 0; i < db.length; i++)
+        {
+            db[i][0] = log[i][0];
+            db[i][1] = log[i][1];
+            db[i][2] = log[i][2];
+        }
+        return db;
     }
 }
