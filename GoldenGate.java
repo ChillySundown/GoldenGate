@@ -2,8 +2,9 @@ import javax.swing.*;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.event.*;
-public class GoldenGate
+public class GoldenGate extends Frame
 {
     GoldenGate() {
         final JFrame screen = new JFrame("GoldenGate");

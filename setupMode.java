@@ -23,7 +23,7 @@ public class setupMode {
                     {
                         if(i == val) {
                             miniScreen.dispose();
-                            new studentDataBase();
+                            
                         }
                         adminField.setText("");
                         result.setText("Invalid Password. Please try again");
@@ -38,9 +38,5 @@ public class setupMode {
         miniScreen.setLayout(null);
         miniScreen.setVisible(true);
         miniScreen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    }
-    public static void main(String[] args)
-    {
-        new setupMode();
     }
 }
