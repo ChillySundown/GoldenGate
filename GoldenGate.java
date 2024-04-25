@@ -20,7 +20,7 @@ public class GoldenGate
         setUpButton.setBounds(1200, 50, 200, 30);
         setUpButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new setupMode();                
+                new setupMode(t);                
             }
         });
         error.setBounds(500, 450, 600, 50);

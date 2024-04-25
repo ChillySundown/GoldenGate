@@ -3,7 +3,7 @@ import java.awt.Color;
 import java.awt.event.*;
 public class setupMode {
     private static int[] adminPass = {1111, 2222, 3333, 4444};
-    setupMode() {
+    setupMode(TestScanner t) {
         final JFrame miniScreen = new JFrame("Setup Mode");
         final JLabel info = new JLabel("Please enter an admin password");
         final JPasswordField adminField = new JPasswordField();
@@ -23,7 +23,7 @@ public class setupMode {
                     {
                         if(i == val) {
                             miniScreen.dispose();
-                            
+                            new studentDataBase(t);
                         }
                         adminField.setText("");
                         result.setText("Invalid Password. Please try again");
