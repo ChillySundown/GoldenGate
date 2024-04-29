@@ -37,21 +37,19 @@ public class studentDataBase {
         window.setLocationByPlatform(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
     }
-    public static void saveData() {
+    public void saveData() {
         int curRows = tabModel.getRowCount();
-        for(int r = ourScanner.getLog().length; r < curRows; r++)
+        for(int r = 1; r < curRows; r++)
         {
-            if(tabModel.getValueAt(r, 0) != null && tabModel.getValueAt(r,1) != null)
+            if(tabModel.getValueAt(r,0) != null && tabModel.getValueAt(r, 1) != null && tabModel.getValueAt(r,2) != null)
             {
-                String name = (String)tabModel.getValueAt(r, 1);
-                int id = Integer.parseInt((String)tabModel.getValueAt(r, 0));
-                ourScanner.addStudent(id, name, 0);
+                int per = Integer.parseInt((String)tabModel.getValueAt(r,0));
+                String name = (String)tabModel.getValueAt(r, 2);
+                int id = Integer.parseInt((String)tabModel.getValueAt(r, 1));
+                ourScanner.addStudent(id, name, per);
+                System.out.println("Is this working?");
             }
         }
         tabModel = new DefaultTableModel(ourScanner.getLog(), columns);
-    }
-    public static void main(String[] args) {
-        
-        System.out.println(ourScanner.getLog())
     }
 }

@@ -18,4 +18,3 @@ Alexander Quintanilla
 Narek Nikoghosyan
 Dylan Muriano
 Bryant Johnson
-Testy
