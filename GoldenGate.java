@@ -17,6 +17,13 @@ public class GoldenGate
         final JLabel message = new JLabel("Hall Pass Status: Not in Use");
         final JLabel error = new JLabel();
         final JButton setUpButton = new JButton("Setup Mode");
+        final JButton ourLog = new JButton("Display Log");
+        ourLog.setBounds(1200, 100, 200, 30);
+        ourLog.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new LogDisplay(t);
+            }
+        });
         setUpButton.setBounds(1200, 50, 200, 30);
         setUpButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -27,6 +34,7 @@ public class GoldenGate
         message.setBounds(500, 350, 400, 50);
         screen.add(message);
         screen.add(greeting);
+        screen.add(ourLog);
         screen.add(error);
         screen.add(setUpButton);
         Color background = Color.decode("#accce6");

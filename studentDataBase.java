@@ -19,6 +19,9 @@ public class studentDataBase {
                 tabModel.addRow(new Object[columns.length]);
             }
         });
+        JLabel notice = new JLabel("IMPORTANT: You must click Enter over each cel you want to save for the SAVE button to work");
+        notice.setBounds(200, 600, 1000, 30);
+        window.add(notice);
         JButton save = new JButton("Save");
         save.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent o) {
@@ -47,7 +50,6 @@ public class studentDataBase {
                 String name = (String)tabModel.getValueAt(r, 2);
                 int id = Integer.parseInt((String)tabModel.getValueAt(r, 1));
                 ourScanner.addStudent(id, name, per);
-                System.out.println("Is this working?");
             }
         }
         tabModel = new DefaultTableModel(ourScanner.getLog(), columns);
