@@ -1,5 +1,4 @@
 import java.awt.BorderLayout;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 public class LogDisplay {

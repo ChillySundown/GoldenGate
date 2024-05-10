@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -27,7 +28,7 @@ public class GoldenGate
         setUpButton.setBounds(1200, 50, 200, 30);
         setUpButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new setupMode(t);                
+                new setupMode(t);            
             }
         });
         error.setBounds(500, 450, 600, 50);
@@ -36,7 +37,7 @@ public class GoldenGate
         screen.add(greeting);
         screen.add(ourLog);
         screen.add(error);
-        screen.add(setUpButton);
+        screen.add(setUpButton); 
         Color background = Color.decode("#accce6");
         screen.getContentPane().setBackground(background);
         screen.setSize(1920, 1080);
