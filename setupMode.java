@@ -1,51 +1,59 @@
 import javax.swing.*;
-import java.awt.Color;
+import java.awt.BorderLayout;
 import java.awt.event.*;
-public class setupMode {
-    private static int pWord;
-    public final JFrame miniScreen;
-    setupMode(TestScanner t) {
-        miniScreen = new JFrame("Setup Mode");
-        final JLabel info = new JLabel("Please enter an admin password");
-        final JPasswordField adminField = new JPasswordField();
-        final JLabel result = new JLabel("");
-        info.setBounds(120, 300, 200, 30);
-        adminField.setBounds(120, 325, 200, 30);
-        result.setBounds(200, 325, 400, 30);
-        miniScreen.add(info);
-        miniScreen.add(adminField);
-        miniScreen.add(result);
-        adminField.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent code) {
-                String password = new String(adminField.getPassword());
-                try {
-                    int val = Integer.parseInt(password);
-                    if(val == pWord) 
-                    {       
-                        miniScreen.dispose();
-                        new studentDataBase(t);
-                    }
-                    else
-                    {
-                        adminField.setText("");
-                        result.setText("Incorrect Password");
-                    }
-                } catch (Exception e) {
-                    adminField.setText("");
-                    result.setText("Invalid Password");
-                }
+import javax.swing.table.DefaultTableModel;
+public class setUpMode {
+    private static DefaultTableModel tabModel;
+    private final JTable ourTable;
+    private static Object[] columns = {"Period", "IDs", "Name"};
+    public static TestScanner ourScanner;
+    private JFrame window;
+    setUpMode(TestScanner t) {
+        ChangePassword.changePassword();
+        window = new JFrame();
+        window.setAlwaysOnTop(true);
+        ourScanner = t;
+        tabModel = new DefaultTableModel(ourScanner.getLog(), columns);
+        ourTable = new JTable(tabModel);
+        JButton addRow = new JButton("Add New Student");
+        addRow.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                tabModel.addRow(new Object[columns.length]);
             }
         });
-        miniScreen.setSize(780,700);
-        miniScreen.setVisible(true);
-        miniScreen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        JLabel notice = new JLabel("IMPORTANT: You must click Enter over each cel you want to save for the SAVE button to work");
+        notice.setBounds(500, 800, 700, 50);
+        window.add(notice);
+        JButton save = new JButton("Save");
+        save.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent o) {
+                saveData();
+            }
+        });
+        Box addRowContainer = Box.createHorizontalBox();
+        addRowContainer.add(addRow);
+        window.add(addRowContainer, BorderLayout.SOUTH);
+        window.add(save, BorderLayout.EAST);
+        window.setSize(720, 700);
+        window.add(ourTable);
+        window.add(new JScrollPane(ourTable), BorderLayout.CENTER);
+        window.pack();
+        window.setVisible(true);
+        window.setLocationRelativeTo(null);
+        window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);        
     }
-    public static void changePassword(int newPass)
-    {
-        pWord = newPass;
-    }
-    public static int getPword()
-    {
-        return pWord;
+    public void saveData() {
+        int curRows = tabModel.getRowCount();
+        for(int r = 1; r < curRows; r++)
+        {
+            if(tabModel.getValueAt(r,0) != null && tabModel.getValueAt(r, 1) != null && tabModel.getValueAt(r,2) != null)
+            {
+                int per = Integer.parseInt((String)tabModel.getValueAt(r,0));
+                String name = (String)tabModel.getValueAt(r, 2);
+                int id = Integer.parseInt((String)tabModel.getValueAt(r, 1));
+                ourScanner.addStudent(id, name, per);
+            }
+        }
+        tabModel = new DefaultTableModel(ourScanner.getLog(), columns);
     }
 }

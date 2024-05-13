@@ -8,6 +8,7 @@ import java.awt.event.*;
 public class GoldenGate
 {
     public static TestScanner t = new TestScanner();
+    public static GoldenGate goldenGate;
     public GoldenGate() {
         final JFrame screen = new JFrame("GoldenGate");
         final JLabel greeting = new JLabel("Please enter your 9 digit ID");
@@ -28,7 +29,7 @@ public class GoldenGate
         setUpButton.setBounds(1200, 50, 200, 30);
         setUpButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new setupMode(t);            
+                new setupModeLock(t);            
             }
         });
         error.setBounds(500, 450, 600, 50);
@@ -74,6 +75,6 @@ public class GoldenGate
         screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     public static void main(String[] args) {
-        new GoldenGate();
+        goldenGate = new GoldenGate();
     }
 }
