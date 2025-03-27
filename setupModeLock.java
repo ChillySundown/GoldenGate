@@ -14,6 +14,7 @@ public class setupModeLock {
         miniScreen.add(info);
         miniScreen.add(adminField);
         miniScreen.add(result);
+        System.out.print(getPword());
         adminField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent code) {
                 String password = new String(adminField.getPassword());
